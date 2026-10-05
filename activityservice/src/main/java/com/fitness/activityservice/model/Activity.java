@@ -1,0 +1,40 @@
+package com.fitness.activityservice.model;
+
+
+import com.fitness.activityservice.enums.ActivityType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.lang.annotation.Documented;
+import java.time.LocalDateTime;
+import java.util.Map;
+
+@Document(collection = "activities")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Activity {
+
+    private String id;
+    private String userId;
+    private ActivityType type;
+    private Integer duration;
+    private Integer caloriesBurned;
+    private LocalDateTime startTime;
+
+    @Field("matrics")
+    private Map<String ,Object> additionalMatrics;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
+}
